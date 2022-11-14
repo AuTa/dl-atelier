@@ -1,0 +1,116 @@
+{
+    "projects": [
+        {
+            "name": "ylwt",
+            "cnTitle": "月亮舞台",
+            "enTitle": "Moon Stage",
+            "cnFactsFigures": [
+                "地点：中国，河北，马兰村",
+                "时间：2012 – 2022",
+                "建筑面积：200 m<sup>2</sup>",
+                "设计：大料建筑",
+                "<span class=\"text-red-500\">Architizer A+ Awards 2017: Jury Winner in Unbuilt Cutural</span>"
+            ],
+            "enFactsFigures": [
+                "Location: Malan Village, Hebei, China",
+                "Date: 2012-",
+                "Floor Area: 200 sqm",
+                "<span class=\"text-red-500\">Architizer A+ Awards 2017: Jury Winner in Unbuilt Cutural</span>"
+            ],
+            "cnDescription": "纪录片《马兰的歌声》讲述了北京奶奶邓老师数年来每周车程4,5个小时，来到河北山区马兰村，教那里的孩子们学习音乐。邓老师一直想给孩子们一个演出的地方，一个小小的露天舞台。我们听到这个故事后，来到了马兰村，见到了邓老师和孩子们。被她们的“纯净”深深吸引。<br>我们想给孩子们一个同样“纯净”的地方，一轮由山坡而下，流入溪水中的“圆月”。<br>平时，孩子们可以在上面玩耍，大人们可以洗衣钓鱼。演出时，这里又成了一个在月亮上唱歌跳舞的地方。<br>“月亮”舞台由小石块铺砌而成，石块的缝隙镶进了许多的玻璃球。在月光下，舞台闪闪发亮，像水面的波光一样。舞台背后藏一暗室，可作为后台，并有一楼梯连接着岸上的村庄。而舞台对面，还有一圆型看台，依河岸而下，流入溪水中，坐在这里的观众，可以看到半扇水上的舞台和半扇水中倒映的舞台共同画出了一轮完整的“圆月”。<br>如果没有邓老师的热情，山村里的孩子可能一辈子也感触不到音乐的美好；而没有这些幸福的孩子，也便更不会有这月亮舞台的纯净。",
+            "enDescription": "We was approached by Deng Xiaolan, a kind madam who is teaching music at the primary school of Malan village located in Hebei province of north China. She came to us looking for a stage design for her little special orchestra. All the players of the orchestra are lovely local children.<br>We fall into their pure world after visiting Malan village. Thus, the moon stage by the riverside finally be the pure tiny world we created for the special orchestra.<br>The stage was shaped by the river bank, which looks like half moon above the river and the other half made up by the inverted reflection in water. <br>Built with clear pebbles with tiny crystal balls among them, the stage could be somewhere children play and fish in the daytime, while after sunset, becomes the shining stage of a artless concert.<br> On the riverside of endless world is the great meeting of the children. The white pebbles as well as the crystal balls invite the moon beam to play with them. Then moonbeam danced on the micro ripples like restless tiny shuttles weaving silver tapestry. <br>There will be one day, that the child leave his hometown to touch the incredible world, just like the young rill under the stage runs swift with a song，breaking through all barriers. Yet we wish that the child’s heart be sweet with the memory of the first fresh sound he created in the liquid murmur of the river through the darkness of midnight.",
+            "imagePathPrefix": "01 月亮舞台 ylwt",
+            "mainImageIndex": 1,
+            "beginImageIndex": 2,
+            "endImageIndex": 12
+        },
+        {
+            "name": "ymh",
+            "cnTitle": "一摸黑",
+            "enTitle": "Eyes closed",
+            "cnFactsFigures": [
+                "地点：中国，北京",
+                "时间：2012",
+                "设计团队：大料建筑",
+                "状态：建成",
+                "<span class=\"text-red-500\">Architizer A+ Awards 2017: Popular Choice Winner in Architecture+Art</span>"
+            ],
+            "enFactsFigures": [
+                "Location：Beijing, China",
+                "Date：2012",
+                "Design：DL Atelier",
+                "Status：Built",
+                "<span class=\"text-red-500\">Architizer A+ Awards 2017: Popular Choice Winner in Architecture+Art</span>"
+            ],
+            "cnDescription": "这是一个两岁孩子的生日礼物。<br>他的父母本想带着这个小孩和他的黑房子去不同的地方看世界。<br>也许，这个孩子还可以和他的小朋友闭着眼在其中上蹿下跳撒泼打滚。<br>也许，这个孩子还可以和他的父亲一起在里面闭着眼呼呼睡上一小觉。<br>也许，这个孩子还可以和他的母亲一起在里面闭着眼讲个故事听首歌。<br>也许，这个孩子会把这里当作他的一个小世界。<br>也许，这个孩子会喜欢这个2岁生日礼物。<br>这个孩子的父母，就是“一摸黑”的设计者：刘阳 徐丹",
+            "enDescription": "This is a birthday gift for a two-year-old kid.<br>Perhaps, this kid could play with his buddies in the darkness without worries.<br>Perhaps, this kid could have a sweet snap with his daddy by his side.<br>Perhaps, this kid and his mommy will share a fairy story or hum a children’s rhymes.<br>Perhaps, the gift will be treated as a tiny fantasy world.<br>Perhaps, this kid will like this handmade gift.",
+            "imagePathPrefix": "02 一摸黑 ymh",
+            "mainImageIndex": 1,
+            "beginImageIndex": 2,
+            "endImageIndex": 15
+        },
+        {
+            "name": "lzxx",
+            "cnTitle": "乐知学校",
+            "enTitle": "",
+            "cnFactsFigures": [
+                "地点：广西 南宁",
+                "时间：2019-2021",
+                "面积：12000 m<sup>2</sup>",
+                "设计：大料建筑"
+            ],
+            "enFactsFigures": [],
+            "cnDescription": "项目位于广西南宁近郊，是一片新开发的区域。作为乐知现代教育产业园的启动区，小学部将于2021年9月开学。<br>这所学校在设计层面除了满足相应的教学功能外，更是把我们一贯的教育理念贯彻于建筑设计当中，即“先吸引，再引导，助坚持，共成长”。<br><br>首先，建筑采用书院式布局，为师生提供了安全安静的小环境，错落有致三进院落相互交合，并且根据季风特点，夏季以东南季风为主，增加东南和西北开口，保证空气流通，冬季以东北季风为主，封闭院落东北角，减少庭院冷空气进入。<br>并且建筑以两层为主，所有普通教室都在一二层，如此，即使课间十分钟，学生们也可以轻松来到庭院玩耍，与自然更多的接触。同时相对低矮的建筑，也为内院空间和建筑带来了更多的风光雨露，更使得院内的树木有可能高过建筑，使得整座校园掩映林中，轻松惬意。<br><br>而围合院落的毎一座单体建筑都像一棵巨树，出檐深远的屋顶给教室带来了荫凉和阴雨天气孩子们活动的宽大敞廊。教室安于屋顶之下，双向采光，双向阳台，在获得更好采光通风的同时，整合扩大了传统的交通空间，使其变为教学空间的扩展，提供了更加丰富多样的学习社交游戏场所，带来更多想象的可能性。<br>而坡屋顶之上，悬浮一拱顶，之间有窗，形成烟囱效应，利于热空气排出，而且拱顶空间为教室提供了一个小夹层，作为图书角之类使用，同样拓展了教学和休息之间的边界。<br><br>建筑所形成的巨树，与庭院里高高低低的植物树木交相应和，形成一片宁静而丰富的独立森林，吸引着师生们来到这里，自由呼吸，探索知识，共同成长，享受美好的校园生活。",
+            "enDescription": "",
+            "imagePathPrefix": "03 乐知学校 lzxx",
+            "mainImageIndex": 1,
+            "beginImageIndex": 2,
+            "endImageIndex": 10
+        },
+        {
+            "name": "yzl",
+            "cnTitle": "鹞子落",
+            "enTitle": "",
+            "cnFactsFigures": [
+                "地点：北京 怀柔",
+                "时间：2020-2021",
+                "业主：小喜民宿",
+                "面积：用地266m<sup>2</sup>, 建筑207m<sup>2</sup>",
+                "设计：大料建筑"
+            ],
+            "enFactsFigures": [],
+            "cnDescription": "场景一：留一盏灯<br>窄巷尽头，便是院落门口，门后建筑屋顶架起一座小小的阁楼。傍晚，粉色内墙所映射出红色的光，照的阁楼如灯，悬于院门口与烽火台之间，温暖的等待着。像《一代宗师》中，叶问深夜归来，看到妻子总会留一盏灯，意味着有人在，便是相处的默契，便是生活既是家。<br><br>场景二：静卧闲看<br>进门来，原本院子有些空旷，于是便沿建筑出挑屋檐，形成宽敞围廊，适宜安坐其下。而压低的屋檐，一方面更为踏实，并且将室内视野上下划分开，其上框景远眺长城，其下实木开启扇的温度感与庭院更亲近连接。室内家具尺度都低矮些，并下沉了休息围坐的地方，放低姿态，换种视角，身体变化或可感知更多可能的美好。<br><br>场景三：邀入古槐<br>我喜欢堡中的古槐，想把他装进院子。东侧的屋檐调整到合适的高度既屏蔽了杂乱又恰好露出树冠。四周建筑均用银色金属穿孔波纹板包裹，闪烁模糊，净化背景。西侧保留的二层小楼，波纹板之上全部打开，院中不再点缀其他植物，使得玻璃幕墙中的古槐绿影更加突显，吸引着人们登楼一观其全。<br><br>场景四：独上危楼<br>如何上下小楼？如何与挑廊一起围合庭院？如何成为视线焦点的风景？如何营造可游可憩的地方？甚至如何撩拨“危险”以满足我的个人趣味？担子便都压在这座楼梯之上。<br>学习叠石也好，模仿前人也罢，我们采用了变化踏步尺度和造型以同时满足攀登和停留的办法。稍有不同的是木头的搭建借用了传统屋架的方式，因我希望它看起来像一座倒塌房屋的废墟，甚至其间还缠绕着一株枯朽的古树，更加荒诞了。遥想梁林两位先生倚靠普化寺上的场景，和这里拍照打卡的男女，不知是致敬还是调侃。<br>每次登楼还算顺畅，但下楼确需小心，渐渐老化的木头模糊了阶梯的边界感，无法轻易迈步落脚，这倒也消解了怕人跌落摔伤的顾虑，因为“危险”的提示，使人们不得不专注在眼前唯一的事情上，全神全情的魅力在此刻便被拾起。木板间的交叠似乎形成了某种混响，走在上面发出坚实硬朗的踏步声，而人们大多会选择静静的坐一坐，望一望，“鹞子落”。",
+            "enDescription": "",
+            "imagePathPrefix": "04 鹞子落 yzl",
+            "mainImageIndex": 1,
+            "beginImageIndex": 2,
+            "endImageIndex": 10
+        },
+        {
+            "name": "gzj",
+            "cnTitle": "国子监空间",
+            "enTitle": "Guozijian Space",
+            "cnFactsFigures": [
+                "地点：中国，北京",
+                "时间：2016-2018",
+                "建筑面积：54m<sup>2</sup>",
+                "设计团队：大料建筑",
+                "设计人员：刘阳 胡蓦怀 刘思思 鲍蕙 杨妮 鱼湉"
+            ],
+            "enFactsFigures": [
+                "Location: Beijing, China",
+                "Date: 2016-2018",
+                "Floor Area: 54 sqm",
+                "Design：DL Atelier",
+                "Architects：Yang Liu, Mohuai Hu, Sisi Liu, Hui Bao, Ni Yang",
+                "Status: Built"
+            ],
+            "cnDescription": "项目所处的北京国子监胡同，大概是在时间延续性上保持最好的胡同之一，从明清开始到现当代的各个时期，都能在这里的空间形态中寻得端倪。<br>在这次的重建中，我们试着保持这种时间性的延续，而不是盲目的恢复明清风貌或者粗暴的破旧立新。<br>首先，保留了原建筑的房院关系和建筑尺度，甚至十几年前的私搭乱建，因为那也是当时人们胡同生活状态的缩影，是历史的一部分。但是我们却用下部混凝土框架和上部木框架的结构形式，调侃而夸张的表达了新建筑与原建筑之间的嫁接关系。<br>再者，保留百年老宅拆出的青砖，十年私搭乱建拆出的红砖，几百年古树留下的残根，他们都还在原来的位置，留有原来的工艺和记忆。但建筑的构造做法却完全不同，400厚的夹壁墙体，除了保温防潮构造外，空调新风给排水等设备也全部暗藏。<br>最后，保留了原建筑向胡同和院子开门开窗的渴望，裂缝般的横条窗，躲避城管封墙堵洞的青砖暗门，在胡同生活中，这种建筑私密性的模糊而导致人们性格更加外向的邻里关系也是“胡同大爷大妈们”的可贵之处。<br>胡同的历史是延续的，时间是发展的，我们不希望他成为标本停留在某一刻，哪怕他足够美好。我们觉得这个充满符号隐喻等暧昧关系的房子，似乎更能体现目前胡同生活的状态----时间给这里留下的宁静与张力。",
+            "enDescription": "The project is located in Guozijian Hutong, Beijing, which is among the areas that preserve the most intact record of Hutong's development throughout history: from Ming and Qing dynasty to modern days, different periods of time left their own marks in the unique spatial forms here.<br> In our refurbishment, instead of simple restoration or renewal, what we try to achieve is to maintain this chronological continuity.<br> Firstly, we reserve the original building-yard relationship and architectural scale, even including the extension built by previous owners, regarding these features as an epitome of life in hutong as well as a part of history. However, a structure consisting of lower concrete frame and upper wooden structure is applied as an ironical and dramatic demonstration of the combination of new constructions and the old architecture.<br> Secondly, black bricks from the century-old house, red bricks from extension decades ago, and the root an ancient tree left here, are all reserved in their original positions, as a remembrance of the old crafts and memories. Yet a completely different construction technology is utilized: 400mm double walls conceal everything from insulation and damp-proof layers to air-conditioning and water supply and draining system within.<br> Finally, with horizontal crevasse-like window and a hidden black-brick door, we also reserve the desire to be more open to hutongs and backyard the original building conveys. In daily life here, part of the wonderfulness of \"hutong neighborhoods\" is the extrovert relationship between residents this blurred architectural privacy creates.<br> Hutong bears a continuous history and a developing timeliness, and we don't want it to freeze like a specimen at some point of time, even if it's beautiful enough. We believe this house full of symbols and metaphors can be a better depiction of contemporary hutong life: the tranquility and tension of time.",
+            "imagePathPrefix": "05 国子监 gzj",
+            "mainImageIndex": 1,
+            "beginImageIndex": 2,
+            "endImageIndex": 13
+        }
+    ]
+}

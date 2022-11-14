@@ -1,0 +1,18 @@
+<section class="text-white text-center font-normal" (click)="$event.stopPropagation()">
+    <ng-container *ngIf="!hiddenEmail"
+        ><a href="mailto:{{ email }}">{{ email }}</a
+        ><br
+    /></ng-container>
+    <ng-container *ngIf="!hiddenTelephone">
+        <a href="tel:{{ telephone }}">{{ telephone }}</a
+        ><br />
+    </ng-container>
+    <ng-container *ngIf="!hiddenMobilephone">
+        <a href="tel:{{ mobilephone }}">{{ mobilephone }}</a
+        ><br />
+    </ng-container>
+    <ng-container *ngIf="!hiddenAddress">
+        {{ address_1 }}<br />
+        {{ address_2 }}</ng-container
+    >
+</section>

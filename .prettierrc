@@ -1,0 +1,19 @@
+{
+    "printWidth": 120,
+    "quoteProps": "preserve",
+    "singleQuote": true,
+    "semi": false,
+    "semicolon": true,
+    "endOfLine": "auto",
+    "trailingComma": "all",
+    "arrowParens": "avoid",
+    "bracketSameLine": true,
+    "overrides": [
+        {
+            "files": "*.html",
+            "options": {
+                "parser": "angular"
+            }
+        }
+    ]
+}

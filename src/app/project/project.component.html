@@ -1,0 +1,35 @@
+<div class="h-full w-full relative" (click)="onClick($event, true)">
+    <img
+        *ngIf="preMainImagePath"
+        src="{{ preMainImagePath }}"
+        alt=""
+        class="absolute top-0 left-0 object-cover min-h-full w-full -z-10"
+    />
+    <img
+        [@myTrigger]="mainImagePath"
+        src="{{ mainImagePath }}"
+        alt="{{ project.imagePathPrefix }}"
+        class="object-cover min-h-full w-full"
+    />
+    <div
+        @myInsertRemoveTrigger
+        *ngIf="showDetails"
+        class="w-full h-full overflow-auto absolute text-center top-0 grid grid-cols-1 sm:grid-cols-[50vw_1fr] justify-items-center"
+    >
+        <div class="prose max-w-none sm:max-h-screen flex justify-center items-center w-4/5">
+            <app-project-description
+                [project]="project"
+                class="sm:max-h-screen text-red-500 w-full"
+                (click)="onClick($event, false)"
+            ></app-project-description>
+        </div>
+        <div class="w-4/5">
+            <app-project-gallery
+                *ngFor="let path of imagePathes"
+                [project]="project"
+                [imagePath]="path"
+                class=""
+            ></app-project-gallery>
+        </div>
+    </div>
+</div>

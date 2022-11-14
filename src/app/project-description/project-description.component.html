@@ -1,0 +1,17 @@
+<mat-card class="!bg-gray-400 !bg-opacity-20 backdrop-blur-sm p-4 my-4 w-full">
+    <article *ngFor="let l of [lang.cn, lang.en]" class="group last:mb-4">
+        <h3 *ngIf="project.getLangField(l, 'Title') as Title" class="text-white">
+            {{ Title }}
+        </h3>
+        <div *ngIf="project.getLangField(l, 'FactsFigures') as FactsFigures" class="not-prose">
+            <ul class="list-none">
+                <li *ngFor="let ff of FactsFigures" class="text-white" [innerHTML]="ff"></li>
+            </ul>
+        </div>
+        <p
+            *ngIf="project.getLangField(l, 'Description') as Description"
+            class="text-white text-left"
+            [innerHTML]="Description"
+        ></p>
+    </article>
+</mat-card>

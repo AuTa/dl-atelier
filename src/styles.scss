@@ -1,0 +1,60 @@
+/* You can add global styles to this file, and also import other style files */
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+body {
+    overflow: hidden;
+}
+
+/* 滚动条样式 S */
+$--scrollbar-track-color: rgba(0, 0, 0, 1);
+$--scrollbar-thumb-color: theme('colors.gray.400') + '33';
+
+// for Mozilla
+// @-moz-document url-prefix() {
+//     * {
+//         scrollbar-color: $--scrollbar-track-color $--scrollbar-thumb-color !important;
+//         scrollbar-width: thin !important;
+//     }
+// }
+
+// for Webkit
+::-webkit-scrollbar {
+    width: 7px;
+    height: 7px;
+}
+::-webkit-scrollbar-thumb {
+    background-color: $--scrollbar-track-color;
+    &:hover {
+        background-color: lighten($--scrollbar-track-color, 20%);
+    }
+}
+::-webkit-scrollbar-track-piece {
+    border-radius: 4px;
+    background-color: $--scrollbar-thumb-color;
+}
+::-webkit-scrollbar-corner {
+    background-color: $--scrollbar-thumb-color;
+}
+/* 滚动条样式 E */
+
+html,
+body {
+    height: 100%;
+}
+body {
+    margin: 0;
+    font-family: Roboto, 'Helvetica Neue', -apple-system, BlinkMacSystemFont, 'Microsoft JhengHei',
+        '微软雅黑', sans-serif;
+}
+
+.mat-mdc-radio-button {
+    --mdc-radio-unselected-focus-icon-color: #dedede;
+    --mdc-radio-unselected-hover-icon-color: #dedede;
+    --mdc-radio-unselected-icon-color: rgba(255, 255, 255, 0.54);
+    --mdc-radio-unselected-pressed-icon-color: rgba(255, 255, 255, 0.54);
+}
+.mat-mdc-radio-button .mdc-radio {
+    --mdc-radio-state-layer-size: 30px;
+}
