@@ -1,7 +1,6 @@
 <div
     class="fixed z-10 pointer-events-none w-full h-full grid grid-rows-2 auto-cols-[min-content_auto_min-content] grid-flow-col justify-items-center items-center text-gray-400"
-    [class.invisible]="navHidden"
->
+    [class.invisible]="navHidden">
     <button
         mat-icon-button
         aria-label="Back"
@@ -9,8 +8,7 @@
         class="justify-self-start pointer-events-auto row-span-2 auto-cols-min"
         #back_color
         (mouseenter)="back_color.color = 'accent'"
-        (mouseleave)="back_color.color = undefined"
-    >
+        (mouseleave)="back_color.color = undefined">
         <mat-icon class="align-top">arrow_back_ios_new</mat-icon>
     </button>
     <button
@@ -20,15 +18,13 @@
         class="self-start pointer-events-auto auto-cols-auto"
         #apps_color
         (mouseenter)="apps_color.color = 'accent'"
-        (mouseleave)="apps_color.color = undefined"
-    >
+        (mouseleave)="apps_color.color = undefined">
         <mat-icon>apps</mat-icon>
     </button>
     <app-project-position
         [(index)]="index"
         [projects]="projects"
-        class="self-end place-self-center pb-1"
-    ></app-project-position>
+        class="self-end place-self-center pb-1"></app-project-position>
     <button
         mat-icon-button
         aria-label="Forward"
@@ -36,8 +32,7 @@
         class="justify-self-end pointer-events-auto row-span-2 auto-cols-min"
         #forward_color
         (mouseenter)="forward_color.color = 'accent'"
-        (mouseleave)="forward_color.color = undefined"
-    >
+        (mouseleave)="forward_color.color = undefined">
         <mat-icon class="align-top">arrow_forward_ios</mat-icon>
     </button>
 </div>
@@ -47,5 +42,4 @@
     [project]="project"
     [(navHidden)]="navHidden"
     (playableChange)="changePlayable($event)"
-    class="pointer-events-auto"
-></app-project>
+    class="pointer-events-auto"></app-project>

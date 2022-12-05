@@ -1,0 +1,18 @@
+<div [routerLink]="['/projects', project.name]" class="group flex-auto relative w-full aspect-sqrt-2 overflow-hidden">
+    <img
+        (load)="loading = false"
+        src="{{ project.mainImagePath('assets/images') }}"
+        alt="{{ project.imagePathPrefix }}"
+        class="w-full scale-[1.01] group-hover:scale-105 transition-transform ease-out duration-[1500ms]" />
+    <div
+        class="peer absolute inset-0 text-white h-full w-full px-8 pb-4 flex flex-col justify-end invisible group-hover:visible">
+        <span class="font-normal">{{ project.getLangField('en', 'Title') }}</span>
+        <span class="font-normal">{{ project.getLangField('cn', 'Title') }}</span>
+    </div>
+    <div
+        @loadingTrigger
+        class="absolute inset-0 w-full h-full flex justify-center items-center bg-neutral-700 backdrop-blur-sm"
+        *ngIf="loading">
+        <mat-progress-spinner color="accent" mode="indeterminate" strokeWidth="1"></mat-progress-spinner>
+    </div>
+</div>
