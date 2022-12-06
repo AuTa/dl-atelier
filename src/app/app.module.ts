@@ -2,6 +2,7 @@ import 'reflect-metadata'
 
 import { OverlayModule } from '@angular/cdk/overlay'
 import { PortalModule } from '@angular/cdk/portal'
+import { NgOptimizedImage } from '@angular/common'
 import { HttpClientModule } from '@angular/common/http'
 import { NgModule } from '@angular/core'
 import { MatButtonModule } from '@angular/material/button'
@@ -53,6 +54,7 @@ import { SliderComponent } from './slider/slider.component'
         OverlayModule,
         PortalModule,
         HttpClientModule,
+        NgOptimizedImage,
     ],
     providers: [
         {

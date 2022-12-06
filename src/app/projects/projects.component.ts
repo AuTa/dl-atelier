@@ -121,6 +121,7 @@ export class ProjectsComponent implements OnInit, OnDestroy, AfterContentChecked
         this.randomImagePortal = portal
         this.imgPortalOutlet.attached.subscribe(ref => {
             ref = ref as ComponentRef<ProjectTileComponent>
+            ref.setInput('delay', 0)
             ref.setInput('project', imgContent?.project)
         })
     }

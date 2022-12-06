@@ -1,13 +1,5 @@
 import { animate, group, query, stagger, style, transition, trigger } from '@angular/animations'
-import {
-    AfterViewInit,
-    Component,
-    EventEmitter,
-    Input,
-    OnChanges,
-    Output,
-    SimpleChanges,
-} from '@angular/core'
+import { AfterViewInit, Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core'
 import { Title } from '@angular/platform-browser'
 import { ActivatedRoute } from '@angular/router'
 import { filter, tap } from 'rxjs'
@@ -35,10 +27,7 @@ import { Lang, Project } from '../project'
             transition(':leave', [animate('100ms', style({ opacity: 0 }))]),
         ]),
         trigger('myTrigger', [
-            transition('* => *', [
-                style({ opacity: 0 }),
-                animate('500ms ease-in', style({ opacity: 1 })),
-            ]),
+            transition('* => *', [style({ opacity: 0 }), animate('500ms ease-in', style({ opacity: 1 }))]),
         ]),
     ],
 })
@@ -73,13 +62,9 @@ export class ProjectComponent implements OnChanges, AfterViewInit {
                     }
                     const chng = changes['project']
                     if (!chng.isFirstChange()) {
-                        this.preMainImagePath = (chng.previousValue as Project).mainImagePath(
-                            this.imageBasePath,
-                        )
+                        this.preMainImagePath = (chng.previousValue as Project).mainImagePath(this.imageBasePath)
                     }
-                    this.titleService.setTitle(
-                        `大料建筑 - ${this.project.getLangField(Lang.cn, 'Title')}`,
-                    )
+                    this.titleService.setTitle(`大料建筑 - ${this.project.getLangField(Lang.cn, 'Title')}`)
 
                     this.imagePathes = this.project.imagePaths(this.imageBasePath)
                     this.mainImagePath = this.project.mainImagePath(this.imageBasePath)
@@ -92,13 +77,13 @@ export class ProjectComponent implements OnChanges, AfterViewInit {
         setTimeout(() => {
             this.route.fragment
                 .pipe(
-                    filter((fragment) => fragment == 'details'),
-                    tap((_) => (this.showDetails = true)),
+                    filter(fragment => fragment == 'details'),
+                    tap(_ => (this.showDetails = true)),
                 )
                 .subscribe()
         })
     }
-    imageBasePath = 'assets/images'
+    imageBasePath = 'images'
 
     onClick(event: Event, valid: boolean): void {
         event.stopPropagation()

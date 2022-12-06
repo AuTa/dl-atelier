@@ -1,3 +1,5 @@
 export const environment = {
-  production: true
-};
+    production: true,
+    cdn: true,
+    cdnUrl: 'http://www.dl-atelier.com',
+}

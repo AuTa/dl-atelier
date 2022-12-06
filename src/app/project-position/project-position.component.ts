@@ -68,12 +68,12 @@ export class ProjectPositionComponent implements OnInit {
         const project = this.projects[index]
         overlayRef.attach(
             new TemplatePortal(this.overlayTemplate, this.viewContainerRef, {
-                url: project.mainImagePath('assets/images'),
+                url: project.mainImagePath('images'),
                 name: project.name,
             }),
         )
         const mouseLeave = fromEvent(event.currentTarget!, 'mouseleave')
-        const subscription = mouseLeave.subscribe((evt) => {
+        const subscription = mouseLeave.subscribe(evt => {
             if (overlayRef.hasAttached()) {
                 overlayRef.detach()
             }

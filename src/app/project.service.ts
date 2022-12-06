@@ -1,16 +1,5 @@
 import { Injectable } from '@angular/core'
-import {
-    forkJoin,
-    last,
-    map,
-    mergeAll,
-    Observable,
-    of,
-    ReplaySubject,
-    scan,
-    single,
-    Subject,
-} from 'rxjs'
+import { forkJoin, last, map, mergeAll, Observable, of, ReplaySubject, scan, single, Subject } from 'rxjs'
 import { HttpClient } from '@angular/common/http'
 import { Type, plainToClass } from 'class-transformer'
 
@@ -33,9 +22,9 @@ export class ProjectService {
 
     constructor(private http: HttpClient) {
         this.http
-            .get<ProjectsJSON>('assets/data.json')
+            .get<ProjectsJSON>('data.json')
             .pipe(
-                map((data) => {
+                map(data => {
                     let response = plainToClass(ProjectsJSON, data)
                     this.PROJECTS.next(response.projects)
                     return response.projects
@@ -46,8 +35,8 @@ export class ProjectService {
 
     getProject(projectName: string): Observable<[Project, number]> {
         return this.PROJECTS.pipe(
-            map((projects) => {
-                const project = projects.find((p) => p.name === projectName)!
+            map(projects => {
+                const project = projects.find(p => p.name === projectName)!
                 const index = projects.indexOf(project)
                 return [project, index] as [Project, number]
             }),
