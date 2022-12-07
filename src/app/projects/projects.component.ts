@@ -1,23 +1,20 @@
-import { animate, query, stagger, style, transition, trigger } from '@angular/animations'
-import { CdkPortalOutlet, ComponentPortal, Portal, TemplatePortal } from '@angular/cdk/portal'
+import { animate, AnimationBuilder, query, stagger, style, transition, trigger } from '@angular/animations'
+import { CdkPortalOutlet, ComponentPortal, Portal } from '@angular/cdk/portal'
 import {
     AfterContentChecked,
     AfterViewInit,
     ChangeDetectorRef,
     Component,
     ComponentRef,
-    ElementRef,
     Input,
     OnDestroy,
     OnInit,
     QueryList,
-    TemplateRef,
     ViewChild,
     ViewChildren,
-    ViewContainerRef,
 } from '@angular/core'
 import { Title } from '@angular/platform-browser'
-import { ActivatedRoute, NavigationEnd, NavigationStart, Router, RouterOutlet } from '@angular/router'
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router'
 import { EMPTY, filter, Observable, ReplaySubject, startWith, switchMap, tap, timer } from 'rxjs'
 
 import { Project } from '../project'
@@ -46,7 +43,7 @@ import { ProjectService } from '../project.service'
 export class ProjectsComponent implements OnInit, OnDestroy, AfterContentChecked, AfterViewInit {
     @Input() projects!: Array<Project>
 
-    @ViewChildren(ProjectTileComponent) TilePortalContents!: QueryList<ProjectTileComponent>
+    @ViewChildren(ProjectTileComponent) tilePortalContents!: QueryList<ProjectTileComponent>
     @ViewChild(CdkPortalOutlet) imgPortalOutlet!: CdkPortalOutlet
 
     randomImagePortal?: Portal<any>
@@ -58,12 +55,12 @@ export class ProjectsComponent implements OnInit, OnDestroy, AfterContentChecked
         private route: ActivatedRoute,
         private router: Router,
         private cdref: ChangeDetectorRef,
-        private _viewContainerRef: ViewContainerRef,
+        private _builder: AnimationBuilder,
         private titleService: Title,
         private projectService: ProjectService,
     ) {
-        router.events.pipe(filter(evt => evt instanceof NavigationEnd)).subscribe(() => {
-            route.firstChild?.data.subscribe(data =>
+        this.router.events.pipe(filter(evt => evt instanceof NavigationEnd)).subscribe(() => {
+            this.route.firstChild?.data.subscribe(data =>
                 this.disableRandomImage$.next(data['disableRandomImage'] as boolean),
             )
         })
@@ -96,9 +93,9 @@ export class ProjectsComponent implements OnInit, OnDestroy, AfterContentChecked
                 tap(() => this.attachRandomImagePortal()),
             )
             .subscribe()
-        if (this.TilePortalContents.length > 0) autoPlayable$.next(true)
+        if (this.tilePortalContents.length > 0) autoPlayable$.next(true)
 
-        this.TilePortalContents.changes.subscribe(_ => autoPlayable$.next(true))
+        this.tilePortalContents.changes.subscribe(_ => autoPlayable$.next(true))
     }
 
     ngOnDestroy(): void {
@@ -115,14 +112,23 @@ export class ProjectsComponent implements OnInit, OnDestroy, AfterContentChecked
     private _unsubGetProjects(): void {}
 
     attachRandomImagePortal(): void {
-        const val = this.TilePortalContents
-        const imgContent = val.get(Math.floor(Math.random() * val.length))
         const portal = new ComponentPortal(ProjectTileComponent)
         this.randomImagePortal = portal
         this.imgPortalOutlet.attached.subscribe(ref => {
             ref = ref as ComponentRef<ProjectTileComponent>
-            ref.setInput('delay', 0)
+            const randomAnimation = this._builder.build([
+                style({ opacity: 0.5 }),
+                animate('500ms ease-in', style({ opacity: 1 })),
+            ])
+            const player = randomAnimation.create(ref.location.nativeElement)
+
+            ref.setInput('forbiddenLoading', true)
+
+            const val = this.tilePortalContents
+            const imgContent = val.get(Math.floor(Math.random() * val.length))
             ref.setInput('project', imgContent?.project)
+
+            player.play()
         })
     }
 }
