@@ -1,3 +1,4 @@
+import { animate, state, style, transition, trigger } from '@angular/animations'
 import { Overlay } from '@angular/cdk/overlay'
 import { TemplatePortal } from '@angular/cdk/portal'
 import {
@@ -21,8 +22,20 @@ import { Project } from '../project'
     selector: 'app-project-position',
     templateUrl: './project-position.component.html',
     styleUrls: ['./project-position.component.scss'],
+    animations: [
+        trigger('overlayTrigger', [
+            transition(':enter', [
+                style({ position: 'relative', opacity: 0, transform: 'translateY(12px)' }),
+                animate('1000ms ease-in', style({ opacity: 1, transform: 'none' })),
+            ]),
+            transition(':leave', [
+                style({ position: 'relative', opacity: 1 }),
+                animate('1000ms ease-out', style({ opacity: 0, transform: 'translateY(12px)' })),
+            ]),
+        ]),
+    ],
 })
-export class ProjectPositionComponent implements OnInit {
+export class ProjectPositionComponent {
     @Input() index: number = 0
     @Output() indexChange = new EventEmitter<number>()
 
@@ -32,8 +45,6 @@ export class ProjectPositionComponent implements OnInit {
     @ViewChild('overlay', { static: false }) overlayTemplate!: TemplateRef<any>
 
     constructor(private overlay: Overlay, private viewContainerRef: ViewContainerRef) {}
-
-    ngOnInit(): void {}
 
     onClickOption(index: number): void {
         this.index = index
