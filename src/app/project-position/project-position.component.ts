@@ -26,7 +26,7 @@ import { Project } from '../project'
         trigger('overlayTrigger', [
             transition(':enter', [
                 style({ position: 'relative', opacity: 0, transform: 'translateY(12px)' }),
-                animate('1000ms ease-in', style({ opacity: 1, transform: 'none' })),
+                animate('1000ms ease-in', style({ opacity: '*', transform: 'none' })),
             ]),
             transition(':leave', [
                 style({ position: 'relative', opacity: 1 }),
