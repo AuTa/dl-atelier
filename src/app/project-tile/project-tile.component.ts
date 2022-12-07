@@ -8,11 +8,11 @@ import { Project } from '../project'
     selector: 'app-project-tile',
     templateUrl: './project-tile.component.html',
     styleUrls: ['./project-tile.component.scss'],
-    animations: [trigger('loadingTrigger', [transition(':leave', [animate('500ms', style({ opacity: 0 }))])])],
+    animations: [trigger('loadingTrigger', [transition(':leave', [animate('500ms ease', style({ opacity: 0 }))])])],
 })
 export class ProjectTileComponent {
     @Input() project!: Project
-    @Input() delay = 500
+    @Input() delay = 200
     @Input() forbiddenLoading: boolean = false
 
     loading$ = new BehaviorSubject(true)
