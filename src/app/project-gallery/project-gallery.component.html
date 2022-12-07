@@ -1,7 +1,10 @@
 <img
+    [@imgLoaded]="loaded"
+    (load)="loaded = true"
     *ngIf="project"
-    src="{{ imagePath }}"
+    [ngSrc]="imagePath"
+    width="800"
+    height="800"
     alt="{{ project.name }}"
-    class="my-4 mx-auto rounded-full"
-    [class.mat-elevation-z4]="true"
-/>
+    class="my-4 mx-auto rounded-full backdrop-blur-sm"
+    [class.mat-elevation-z4]="true" />
