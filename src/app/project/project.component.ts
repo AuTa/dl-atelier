@@ -1,4 +1,4 @@
-import { animate, group, query, stagger, style, transition, trigger } from '@angular/animations'
+import { animate, animateChild, group, query, stagger, style, transition, trigger } from '@angular/animations'
 import { AfterViewInit, Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core'
 import { Title } from '@angular/platform-browser'
 import { ActivatedRoute } from '@angular/router'
@@ -16,11 +16,11 @@ import { Lang, Project } from '../project'
                 group([
                     query('app-project-description', [
                         style({ transform: 'translateX(-50%)' }),
-                        animate('500ms ease-out', style({ transform: 'translateX(0)' })),
+                        animate('500ms ease-in', style({ transform: 'none' })),
                     ]),
                     query('app-project-gallery', [
-                        style({ opacity: 0 }),
-                        stagger(100, [animate('1000ms', style({ opacity: 1 }))]),
+                        style({ transform: 'scale(0.5)', opacity: 0 }),
+                        stagger(100, [animate('500ms ease-in', style({ transform: 'none', opacity: '*' }))]),
                     ]),
                 ]),
             ]),
