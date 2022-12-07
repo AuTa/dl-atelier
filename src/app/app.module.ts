@@ -2,7 +2,7 @@ import 'reflect-metadata'
 
 import { OverlayModule } from '@angular/cdk/overlay'
 import { PortalModule } from '@angular/cdk/portal'
-import { NgOptimizedImage } from '@angular/common'
+import { IMAGE_LOADER, ImageLoaderConfig, NgOptimizedImage } from '@angular/common'
 import { HttpClientModule } from '@angular/common/http'
 import { NgModule } from '@angular/core'
 import { MatButtonModule } from '@angular/material/button'
@@ -13,6 +13,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner'
 import { MAT_RADIO_DEFAULT_OPTIONS, MatRadioModule } from '@angular/material/radio'
 import { BrowserModule } from '@angular/platform-browser'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+import { environment } from 'src/environments/environment'
 
 import { AppRoutingModule } from './app-routing.module'
 import { AppComponent } from './app.component'
@@ -60,6 +61,13 @@ import { SliderComponent } from './slider/slider.component'
         {
             provide: MAT_RADIO_DEFAULT_OPTIONS,
             useValue: { color: 'accent' },
+        },
+        {
+            provide: IMAGE_LOADER,
+            useValue: (config: ImageLoaderConfig) => {
+                const cdnUrl = (environment.cdn as boolean) ? environment.cdnUrl : ''
+                return `${cdnUrl}/${encodeURI(config.src)}?imageView2/2/w/${config.width}`
+            },
         },
     ],
     bootstrap: [AppComponent],
