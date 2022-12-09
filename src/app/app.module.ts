@@ -26,14 +26,14 @@ import { ProjectPositionComponent } from './project-position/project-position.co
 import { ProjectTileComponent } from './project-tile/project-tile.component'
 import { ProjectComponent } from './project/project.component'
 import { ProjectsComponent } from './projects/projects.component'
-import { SliderComponent } from './slider/slider.component'
+import { ProjectSliderComponent } from './slider/slider.component'
 
 @NgModule({
     declarations: [
         AppComponent,
         ProjectComponent,
         ProjectGalleryComponent,
-        SliderComponent,
+        ProjectSliderComponent,
         ProjectPositionComponent,
         ProjectsComponent,
         ProjectDescriptionComponent,

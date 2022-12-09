@@ -1,8 +1,11 @@
-<mat-radio-group aria-label="选择项目" value="{{ index }}">
+<mat-radio-group aria-label="选择项目" #radioGroup="matRadioGroup">
     <mat-radio-button
+        #radio="matRadioButton"
         *ngFor="let p of projects; let i = index"
-        value="{{ i }}"
-        (click)="onClickOption(i)"
+        [value]="i"
+        [routerLink]="p.name"
+        routerLinkActive
+        (isActiveChange)="$event === true ? (radioGroup.selected = radio) : null"
         class="pointer-events-auto"
         (mouseenter)="onMouseEnter($event, i)"></mat-radio-button>
     <ng-template let-url="url" let-name="name" #overlay>

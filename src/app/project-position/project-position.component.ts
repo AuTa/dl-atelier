@@ -1,21 +1,9 @@
-import { animate, state, style, transition, trigger } from '@angular/animations'
-import { Overlay } from '@angular/cdk/overlay'
+import { animate, style, transition, trigger } from '@angular/animations'
+import { FlexibleConnectedPositionStrategyOrigin, Overlay, OverlayRef } from '@angular/cdk/overlay'
 import { TemplatePortal } from '@angular/cdk/portal'
-import {
-    Component,
-    ElementRef,
-    EventEmitter,
-    Input,
-    OnInit,
-    Output,
-    QueryList,
-    TemplateRef,
-    ViewChild,
-    ViewChildren,
-    ViewContainerRef,
-} from '@angular/core'
-import { MatRadioButton } from '@angular/material/radio'
+import { Component, ElementRef, Input, TemplateRef, ViewChild, ViewContainerRef } from '@angular/core'
 import { fromEvent } from 'rxjs'
+
 import { Project } from '../project'
 
 @Component({
@@ -36,30 +24,16 @@ import { Project } from '../project'
     ],
 })
 export class ProjectPositionComponent {
-    @Input() index: number = 0
-    @Output() indexChange = new EventEmitter<number>()
-
     @Input() projects: Array<Project> | null = null
 
-    @ViewChildren(MatRadioButton) radios!: QueryList<MatRadioButton>
     @ViewChild('overlay', { static: false }) overlayTemplate!: TemplateRef<any>
 
     constructor(private overlay: Overlay, private viewContainerRef: ViewContainerRef) {}
 
-    onClickOption(index: number): void {
-        this.index = index
-        this.indexChange.emit(this.index)
-    }
-
-    onMouseEnter(event: Event, index: number): void {
-        if (this.projects === null || index >= this.projects.length) {
-            return
-        }
-        const elementRef = new ElementRef(event.currentTarget)
-
+    overlayRefFactory(origin: FlexibleConnectedPositionStrategyOrigin): OverlayRef {
         const positionStrategy = this.overlay
             .position()
-            .flexibleConnectedTo(elementRef)
+            .flexibleConnectedTo(origin)
             .withPositions([
                 {
                     originX: 'center',
@@ -70,21 +44,31 @@ export class ProjectPositionComponent {
                 },
             ])
             .withFlexibleDimensions(false)
-        const overlayRef = this.overlay.create({
+        return this.overlay.create({
             positionStrategy, // 位置策略
             scrollStrategy: this.overlay.scrollStrategies.reposition(), // 滚动策略
             width: 200,
             hasBackdrop: false, // 是否显示遮罩层
         })
+    }
+
+    onMouseEnter(event: Event, index: number): void {
+        if (this.projects === null || index >= this.projects.length) {
+            return
+        }
         const project = this.projects[index]
+        const elementRef = new ElementRef(event.currentTarget)
+        const overlayRef = this.overlayRefFactory(elementRef)
         overlayRef.attach(
             new TemplatePortal(this.overlayTemplate, this.viewContainerRef, {
                 url: project.mainImagePath('images'),
                 name: project.name,
             }),
         )
-        const mouseLeave = fromEvent(event.currentTarget!, 'mouseleave')
-        const subscription = mouseLeave.subscribe(evt => {
+        /**
+         * MouseLeave Event Handler
+         */
+        const subscription = fromEvent(event.currentTarget!, 'mouseleave').subscribe(evt => {
             if (overlayRef.hasAttached()) {
                 overlayRef.detach()
             }

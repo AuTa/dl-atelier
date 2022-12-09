@@ -1,45 +1,37 @@
 <div
-    class="fixed z-10 pointer-events-none w-full h-full grid grid-rows-2 auto-cols-[min-content_auto_min-content] grid-flow-col justify-items-center items-center text-gray-400"
-    [class.invisible]="navHidden">
+    class="fixed z-10 pointer-events-none w-full h-full grid grid-rows-2 auto-cols-[min-content_auto_min-content] grid-flow-col justify-items-center items-center text-gray-400">
     <button
         mat-icon-button
         aria-label="Back"
-        (click)="onClick('back')"
+        [routerLink]="prev$ | async"
+        #back_button
+        [disabled]="(itemChange$ | async) === 0"
         class="justify-self-start pointer-events-auto row-span-2 auto-cols-min"
-        #back_color
-        (mouseenter)="back_color.color = 'accent'"
-        (mouseleave)="back_color.color = undefined">
+        (mouseenter)="back_button.color = 'accent'"
+        (mouseleave)="back_button.color = undefined">
         <mat-icon class="align-top">arrow_back_ios_new</mat-icon>
     </button>
     <button
         mat-icon-button
         aria-label="All Projects"
-        routerLink="../"
+        routerLink="./"
         class="self-start pointer-events-auto auto-cols-auto"
         #apps_color
         (mouseenter)="apps_color.color = 'accent'"
         (mouseleave)="apps_color.color = undefined">
         <mat-icon>apps</mat-icon>
     </button>
-    <app-project-position
-        [(index)]="index"
-        [projects]="projects"
-        class="self-end place-self-center pb-1"></app-project-position>
+    <app-project-position [projects]="projects" class="self-end place-self-center pb-1"></app-project-position>
     <button
         mat-icon-button
         aria-label="Forward"
-        (click)="onClick('forward')"
+        [routerLink]="next$ | async"
+        [disabled]="projects === undefined || (itemChange$ | async) === projects.length - 1"
         class="justify-self-end pointer-events-auto row-span-2 auto-cols-min"
-        #forward_color
-        (mouseenter)="forward_color.color = 'accent'"
-        (mouseleave)="forward_color.color = undefined">
+        #forward_button
+        (mouseenter)="forward_button.color = 'accent'"
+        (mouseleave)="forward_button.color = undefined">
         <mat-icon class="align-top">arrow_forward_ios</mat-icon>
     </button>
 </div>
-
-<app-project
-    *ngIf="project"
-    [project]="project"
-    [(navHidden)]="navHidden"
-    (playableChange)="changePlayable($event)"
-    class="pointer-events-auto"></app-project>
+<router-outlet></router-outlet>

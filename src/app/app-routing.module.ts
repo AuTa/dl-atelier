@@ -2,8 +2,9 @@ import { NgModule } from '@angular/core'
 import { RouterModule, Routes } from '@angular/router'
 
 import { IndexComponent } from './index/index.component'
+import { ProjectComponent } from './project/project.component'
 import { ProjectsComponent } from './projects/projects.component'
-import { SliderComponent } from './slider/slider.component'
+import { ProjectSliderComponent } from './slider/slider.component'
 
 const routes: Routes = [
     {
@@ -14,7 +15,11 @@ const routes: Routes = [
             { path: 'projects', children: [], data: { disableRandomImage: false } },
         ],
     },
-    { path: 'projects/:name', component: SliderComponent },
+    {
+        path: 'projects',
+        component: ProjectSliderComponent,
+        children: [{ path: ':name', component: ProjectComponent, data: { animation: 'ProjectPage' } }],
+    },
 ]
 
 @NgModule({

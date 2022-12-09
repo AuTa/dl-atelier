@@ -1,10 +1,13 @@
-import { animate, animateChild, group, query, stagger, style, transition, trigger } from '@angular/animations'
-import { AfterViewInit, Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core'
+import { animate, group, query, stagger, style, transition, trigger } from '@angular/animations'
+import { AfterViewInit, Component, OnInit } from '@angular/core'
 import { Title } from '@angular/platform-browser'
 import { ActivatedRoute } from '@angular/router'
-import { filter, tap } from 'rxjs'
+import { bufferCount, filter, Observable, ReplaySubject, startWith, tap } from 'rxjs'
 
 import { Lang, Project } from '../project'
+import { ProjectService } from '../project.service'
+import { SliderAutoplayService } from '../slider/slider-autoplay.service'
+import { SliderIndexService } from '../slider/slider-index.service'
 
 @Component({
     selector: 'app-project',
@@ -27,18 +30,16 @@ import { Lang, Project } from '../project'
             transition(':leave', [animate('100ms', style({ opacity: 0 }))]),
         ]),
         trigger('myTrigger', [
-            transition('* => *', [style({ opacity: 0 }), animate('500ms ease-in', style({ opacity: 1 }))]),
+            transition('* => 1', [style({ opacity: 0 }), animate('500ms ease-in', style({ opacity: 1 }))]),
         ]),
     ],
 })
-export class ProjectComponent implements OnChanges, AfterViewInit {
-    @Input() project!: Project
-    @Input() navHidden?: boolean
-    @Output() navHiddenChange = new EventEmitter<boolean>()
-    @Output() playableChange = new EventEmitter<boolean>()
+export class ProjectComponent implements OnInit, AfterViewInit {
+    project!: Project
 
     imagePathes: Array<string> = []
-    mainImagePath: string = ''
+    mainImagePath$: ReplaySubject<string> = new ReplaySubject(2)
+    cacheImagePathes$: Observable<string[]>
 
     private _showDetails: boolean = false
     get showDetails(): boolean {
@@ -46,31 +47,37 @@ export class ProjectComponent implements OnChanges, AfterViewInit {
     }
     set showDetails(val: boolean) {
         this._showDetails = val
-        this.navHiddenChange.emit(val)
-        this.playableChange.emit(!val)
+        this.sliderAutoplay.autoplayable$.next(!val)
     }
     preMainImagePath?: string
 
-    constructor(private route: ActivatedRoute, private titleService: Title) {}
+    constructor(
+        private route: ActivatedRoute,
+        private titleService: Title,
+        private projectService: ProjectService,
+        private sliderIndex: SliderIndexService,
+        private sliderAutoplay: SliderAutoplayService,
+    ) {
+        this.cacheImagePathes$ = this.mainImagePath$.pipe(startWith(''), bufferCount(2, 1))
+    }
 
-    ngOnChanges(changes: SimpleChanges): void {
-        for (const propName in changes) {
-            switch (propName) {
-                case 'project': {
-                    if (this.project === undefined) {
-                        this.project = new Project()
-                    }
-                    const chng = changes['project']
-                    if (!chng.isFirstChange()) {
-                        this.preMainImagePath = (chng.previousValue as Project).mainImagePath(this.imageBasePath)
-                    }
-                    this.titleService.setTitle(`大料建筑 - ${this.project.getLangField(Lang.cn, 'Title')}`)
+    ngOnInit(): void {
+        this.route.paramMap.subscribe(params => {
+            const name = params.get('name')!
+            this.getProject(name)
+        })
+    }
 
-                    this.imagePathes = this.project.imagePaths(this.imageBasePath)
-                    this.mainImagePath = this.project.mainImagePath(this.imageBasePath)
-                }
-            }
-        }
+    private getProject(name: string): void {
+        this.projectService.getProject(name).subscribe(([project, index]) => {
+            this.project = project
+            this.sliderIndex.itemChange$.next(index)
+
+            this.titleService.setTitle(`大料建筑 - ${this.project.getLangField(Lang.cn, 'Title')}`)
+
+            this.imagePathes = this.project.imagePaths(this.imageBasePath)
+            this.mainImagePath$.next(this.project.mainImagePath(this.imageBasePath))
+        })
     }
 
     ngAfterViewInit() {
@@ -90,5 +97,9 @@ export class ProjectComponent implements OnChanges, AfterViewInit {
         if (valid) {
             this.showDetails = !this.showDetails
         }
+    }
+
+    trackSrc(index: number, item: string): string {
+        return item
     }
 }
