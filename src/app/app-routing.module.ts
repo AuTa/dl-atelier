@@ -1,5 +1,11 @@
 import { NgModule } from '@angular/core'
-import { RouterModule, Routes } from '@angular/router'
+import {
+    ActivatedRouteSnapshot,
+    BaseRouteReuseStrategy,
+    RouteReuseStrategy,
+    RouterModule,
+    Routes,
+} from '@angular/router'
 
 import { IndexComponent } from './index/index.component'
 import { ProjectComponent } from './project/project.component'
@@ -22,8 +28,23 @@ const routes: Routes = [
     },
 ]
 
+class CustomRouteReuseStrategy extends BaseRouteReuseStrategy {
+    override shouldReuseRoute(future: ActivatedRouteSnapshot, curr: ActivatedRouteSnapshot): boolean {
+        if (super.shouldReuseRoute(future, curr)) {
+            switch (curr.component) {
+                case ProjectComponent:
+                    if (future.params !== curr.params) {
+                        return false
+                    }
+            }
+        }
+        return super.shouldReuseRoute(future, curr)
+    }
+}
+
 @NgModule({
     imports: [RouterModule.forRoot(routes, { enableTracing: false })],
+    providers: [{ provide: RouteReuseStrategy, useClass: CustomRouteReuseStrategy }],
     exports: [RouterModule],
 })
 export class AppRoutingModule {}

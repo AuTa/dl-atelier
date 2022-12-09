@@ -34,4 +34,6 @@
         <mat-icon class="align-top">arrow_forward_ios</mat-icon>
     </button>
 </div>
-<router-outlet></router-outlet>
+<div [@routeSlide]="routeTrigger$ | async" class="w-full h-full">
+    <router-outlet></router-outlet>
+</div>

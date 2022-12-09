@@ -1,13 +1,11 @@
 <div class="h-full w-full relative" (click)="onClick($event, true)" [class.z-10]="showDetails">
-    <ng-container *ngFor="let src of cacheImagePathes$ | async; let i = index; trackBy: trackSrc">
-        <img
-            [@myTrigger]="i"
-            *ngIf="src"
-            [ngSrc]="src"
-            fill
-            alt="{{ project.imagePathPrefix }}"
-            class="absolute top-0 left-0 object-cover min-h-full w-full"
-    /></ng-container>
+    <img
+        *ngIf="project"
+        [ngSrc]="mainImagePath"
+        alt="{{ project.imagePathPrefix }}"
+        class="object-cover h-full w-auto"
+        fill
+        priority />
     <div
         @myInsertRemoveTrigger
         *ngIf="showDetails"

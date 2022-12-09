@@ -2,7 +2,8 @@
  * https://medium.com/frontend-coach/angular-router-animations-what-they-dont-tell-you-3d2737a7f20b
  * https://stackblitz.com/edit/angular-child-route-animation
  */
-import { ChangeDetectorRef, Component, HostListener, OnDestroy, OnInit } from '@angular/core'
+import { animate, group, query, style, transition, trigger } from '@angular/animations'
+import { AfterContentChecked, ChangeDetectorRef, Component, HostListener, OnDestroy, OnInit } from '@angular/core'
 import { ActivatedRoute, ChildrenOutletContexts, Router } from '@angular/router'
 import {
     combineLatest,
@@ -10,12 +11,14 @@ import {
     map,
     Observable,
     of,
+    pairwise,
     ReplaySubject,
     share,
     startWith,
     Subject,
     switchMap,
     take,
+    takeUntil,
     tap,
     timer,
 } from 'rxjs'
@@ -38,9 +41,43 @@ enum navState {
     templateUrl: './slider.component.html',
     styleUrls: ['./slider.component.scss'],
     providers: [SliderIndexService, SliderAutoplayService],
-    animations: [],
+    animations: [
+        trigger('routeSlide', [
+            transition('* => -1', []),
+            transition(':increment, :decrement', [
+                style({ position: 'relative' }),
+                query(':enter, :leave', [
+                    style({
+                        position: 'absolute',
+                        top: 0,
+                        left: 0,
+                        width: '100%',
+                        height: '100%',
+                    }),
+                ]),
+                group([
+                    query(
+                        ':enter',
+                        [
+                            style({ transform: 'translateX({{offsetEnter}}%)' }),
+                            animate('0.4s ease-in-out', style({ transform: 'translateX(0%)' })),
+                        ],
+                        { optional: true },
+                    ),
+                    query(
+                        ':leave',
+                        [
+                            style({ transform: 'translateX(0%)' }),
+                            animate('0.4s ease-in-out', style({ transform: 'translateX({{offsetLeave}}%)' })),
+                        ],
+                        { optional: true },
+                    ),
+                ]),
+            ]),
+        ]),
+    ],
 })
-export class ProjectSliderComponent implements OnInit, OnDestroy {
+export class ProjectSliderComponent implements OnInit, AfterContentChecked, OnDestroy {
     projects!: Array<Project>
     unsubscribe$ = new Subject<void>()
 
@@ -49,6 +86,7 @@ export class ProjectSliderComponent implements OnInit, OnDestroy {
     itemChange$: Observable<number>
     next$!: Observable<string>
     prev$!: Observable<string>
+    routeTrigger$!: Observable<object>
 
     @HostListener('window:keyup.arrowleft', ['$event'])
     onKeyUpLeft(event: KeyboardEvent) {
@@ -71,6 +109,17 @@ export class ProjectSliderComponent implements OnInit, OnDestroy {
     ) {
         this.autoplayable$ = this.autoplay.autoplayable$
         this.itemChange$ = this.itemsIndex.itemChange$
+        this.routeTrigger$ = this.itemChange$.pipe(
+            startWith(-1),
+            pairwise(),
+            map(([prev, curr]) => ({
+                value: curr,
+                params: {
+                    offsetEnter: prev > curr ? -100 : 100,
+                    offsetLeave: prev > curr ? 100 : -100,
+                },
+            })),
+        )
     }
 
     ngOnInit(): void {
@@ -117,6 +166,7 @@ export class ProjectSliderComponent implements OnInit, OnDestroy {
                     ),
                 ),
                 tap(index => this.goToProject(index + 1)),
+                takeUntil(this.unsubscribe$),
             )
             .subscribe()
     }
@@ -134,6 +184,7 @@ export class ProjectSliderComponent implements OnInit, OnDestroy {
                 take(1),
                 switchMap(index => (index === extreme ? EMPTY : of(index + state))),
                 tap(index => this.goToProject(index)),
+                tap(() => this.autoplayable$.next(true)),
             )
             .subscribe()
     }

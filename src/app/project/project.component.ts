@@ -2,7 +2,7 @@ import { animate, group, query, stagger, style, transition, trigger } from '@ang
 import { AfterViewInit, Component, OnInit } from '@angular/core'
 import { Title } from '@angular/platform-browser'
 import { ActivatedRoute } from '@angular/router'
-import { bufferCount, filter, Observable, ReplaySubject, startWith, tap } from 'rxjs'
+import { filter, tap } from 'rxjs'
 
 import { Lang, Project } from '../project'
 import { ProjectService } from '../project.service'
@@ -19,11 +19,11 @@ import { SliderIndexService } from '../slider/slider-index.service'
                 group([
                     query('app-project-description', [
                         style({ transform: 'translateX(-50%)' }),
-                        animate('500ms ease-in', style({ transform: 'none' })),
+                        animate('200ms ease', style({ transform: 'none' })),
                     ]),
                     query('app-project-gallery', [
                         style({ transform: 'scale(0.5)', opacity: 0 }),
-                        stagger(100, [animate('500ms ease-in', style({ transform: 'none', opacity: '*' }))]),
+                        stagger(50, [animate('200ms ease', style({ transform: 'none', opacity: '*' }))]),
                     ]),
                 ]),
             ]),
@@ -38,8 +38,7 @@ export class ProjectComponent implements OnInit, AfterViewInit {
     project!: Project
 
     imagePathes: Array<string> = []
-    mainImagePath$: ReplaySubject<string> = new ReplaySubject(2)
-    cacheImagePathes$: Observable<string[]>
+    mainImagePath!: string
 
     private _showDetails: boolean = false
     get showDetails(): boolean {
@@ -49,7 +48,6 @@ export class ProjectComponent implements OnInit, AfterViewInit {
         this._showDetails = val
         this.sliderAutoplay.autoplayable$.next(!val)
     }
-    preMainImagePath?: string
 
     constructor(
         private route: ActivatedRoute,
@@ -57,15 +55,11 @@ export class ProjectComponent implements OnInit, AfterViewInit {
         private projectService: ProjectService,
         private sliderIndex: SliderIndexService,
         private sliderAutoplay: SliderAutoplayService,
-    ) {
-        this.cacheImagePathes$ = this.mainImagePath$.pipe(startWith(''), bufferCount(2, 1))
-    }
+    ) {}
 
     ngOnInit(): void {
-        this.route.paramMap.subscribe(params => {
-            const name = params.get('name')!
-            this.getProject(name)
-        })
+        const { name } = this.route.snapshot.params
+        this.getProject(name)
     }
 
     private getProject(name: string): void {
@@ -76,7 +70,7 @@ export class ProjectComponent implements OnInit, AfterViewInit {
             this.titleService.setTitle(`大料建筑 - ${this.project.getLangField(Lang.cn, 'Title')}`)
 
             this.imagePathes = this.project.imagePaths(this.imageBasePath)
-            this.mainImagePath$.next(this.project.mainImagePath(this.imageBasePath))
+            this.mainImagePath = this.project.mainImagePath(this.imageBasePath)
         })
     }
 
@@ -97,9 +91,5 @@ export class ProjectComponent implements OnInit, AfterViewInit {
         if (valid) {
             this.showDetails = !this.showDetails
         }
-    }
-
-    trackSrc(index: number, item: string): string {
-        return item
     }
 }
