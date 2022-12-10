@@ -28,7 +28,10 @@
               {
                 "glob": "**/*",
                 "input": "src/assets/",
-                "output": "/"
+                "output": "/",
+                "ignore": [
+                  //   "**/images/**/*"
+                ]
               }
             ],
             "styles": [
@@ -115,6 +118,9 @@
               "src/**/*.html"
             ]
           }
+        },
+        "deploy": {
+          "builder": "angular-cli-ghpages:deploy"
         }
       }
     }
