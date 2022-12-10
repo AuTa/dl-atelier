@@ -26,7 +26,8 @@ import { ProjectPositionComponent } from './project-position/project-position.co
 import { ProjectTileComponent } from './project-tile/project-tile.component'
 import { ProjectComponent } from './project/project.component'
 import { ProjectsComponent } from './projects/projects.component'
-import { ProjectSliderComponent } from './slider/slider.component'
+import { ProjectSliderComponent } from './slider/slider.component';
+import { ImageLoadingComponent } from './image-loading/image-loading.component'
 
 @NgModule({
     declarations: [
@@ -41,6 +42,7 @@ import { ProjectSliderComponent } from './slider/slider.component'
         IndexComponent,
         BusinessCardComponent,
         ProjectTileComponent,
+        ImageLoadingComponent,
     ],
     imports: [
         BrowserModule,

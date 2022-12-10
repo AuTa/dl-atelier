@@ -2,6 +2,7 @@
     <img
         *ngIf="project"
         [ngSrc]="mainImagePath"
+        (load)="loading$.next(false)"
         alt="{{ project.imagePathPrefix }}"
         class="object-cover h-full w-auto"
         fill
@@ -24,4 +25,5 @@
                 class="block"></app-project-gallery>
         </div>
     </div>
+    <app-image-loading [loading$]="loading$" [delay]="0"></app-image-loading>
 </div>

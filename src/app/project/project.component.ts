@@ -2,7 +2,7 @@ import { animate, group, query, stagger, style, transition, trigger } from '@ang
 import { AfterViewInit, Component, OnInit } from '@angular/core'
 import { Title } from '@angular/platform-browser'
 import { ActivatedRoute } from '@angular/router'
-import { filter, tap } from 'rxjs'
+import { BehaviorSubject, filter, tap } from 'rxjs'
 
 import { Lang, Project } from '../project'
 import { ProjectService } from '../project.service'
@@ -39,6 +39,8 @@ export class ProjectComponent implements OnInit, AfterViewInit {
 
     imagePathes: Array<string> = []
     mainImagePath!: string
+
+    loading$ = new BehaviorSubject(true)
 
     private _showDetails: boolean = false
     get showDetails(): boolean {

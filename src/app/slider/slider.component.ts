@@ -60,7 +60,7 @@ enum navState {
                         ':enter',
                         [
                             style({ transform: 'translateX({{offsetEnter}}%)' }),
-                            animate('0.4s ease-in-out', style({ transform: 'translateX(0%)' })),
+                            animate('800ms ease-in-out', style({ transform: 'translateX(0%)' })),
                         ],
                         { optional: true },
                     ),
@@ -68,7 +68,7 @@ enum navState {
                         ':leave',
                         [
                             style({ transform: 'translateX(0%)' }),
-                            animate('0.4s ease-in-out', style({ transform: 'translateX({{offsetLeave}}%)' })),
+                            animate('800ms ease-in-out', style({ transform: 'translateX({{offsetLeave}}%)' })),
                         ],
                         { optional: true },
                     ),
