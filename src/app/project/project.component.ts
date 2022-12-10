@@ -74,6 +74,8 @@ export class ProjectComponent implements OnInit, AfterViewInit {
             this.imagePathes = this.project.imagePaths
             this.mainImagePath = this.project.mainImagePath
             if (this.project.defaultDetails) this.showDetails = true
+            /** 如果有图片，等待图片加载完再自动播放。 */
+            if (this.mainImagePath) this.sliderAutoplay.autoplayable$.next(false)
         })
     }
 
@@ -90,8 +92,17 @@ export class ProjectComponent implements OnInit, AfterViewInit {
 
     onClick(event: Event, valid: boolean): void {
         event.stopPropagation()
-        if (valid) {
-            this.showDetails = !this.showDetails
+        if (valid) this.showDetails = !this.showDetails
+    }
+    /**
+     * 如果图片加载成功，将 loading 状态改为 false。
+     * 无论图片加载成功或者失败，都根据 showDetails 设置是否允许自动播放的属性。
+     * @param event 图片加载事件。
+     */
+    loadImageEvent(event: Event): void {
+        if (event.type === 'load') {
+            this.loading$.next(false)
         }
+        this.sliderAutoplay.autoplayable$.next(!this.showDetails)
     }
 }

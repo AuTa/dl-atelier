@@ -6,7 +6,6 @@ import {
     ChangeDetectorRef,
     Component,
     ComponentRef,
-    Input,
     OnDestroy,
     OnInit,
     QueryList,
@@ -15,7 +14,7 @@ import {
 } from '@angular/core'
 import { Title } from '@angular/platform-browser'
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router'
-import { EMPTY, filter, Observable, ReplaySubject, startWith, switchMap, tap, timer } from 'rxjs'
+import { EMPTY, filter, Observable, ReplaySubject, startWith, Subject, switchMap, takeUntil, tap, timer } from 'rxjs'
 
 import { Project } from '../project'
 import { ProjectTileComponent } from '../project-tile/project-tile.component'
@@ -41,7 +40,7 @@ import { ProjectService } from '../project.service'
     ],
 })
 export class ProjectsComponent implements OnInit, OnDestroy, AfterContentChecked, AfterViewInit {
-    @Input() projects!: Array<Project>
+    projects!: Array<Project>
 
     @ViewChildren(ProjectTileComponent) tilePortalContents!: QueryList<ProjectTileComponent>
     @ViewChild(CdkPortalOutlet) imgPortalOutlet!: CdkPortalOutlet
@@ -50,6 +49,8 @@ export class ProjectsComponent implements OnInit, OnDestroy, AfterContentChecked
 
     disableRandomImage$ = new ReplaySubject<boolean>(1)
     navEnd$!: Observable<NavigationEnd>
+    unsubscribe$ = new Subject<void>()
+    autoPlayable$ = new ReplaySubject<boolean>(1)
 
     constructor(
         private route: ActivatedRoute,
@@ -60,16 +61,12 @@ export class ProjectsComponent implements OnInit, OnDestroy, AfterContentChecked
         private projectService: ProjectService,
     ) {
         this.router.events.pipe(filter(evt => evt instanceof NavigationEnd)).subscribe(() => {
-            this.route.firstChild?.data.subscribe(data =>
-                this.disableRandomImage$.next(data['disableRandomImage'] as boolean),
-            )
+            const r = this.route.firstChild ?? this.route
+            r.data.subscribe(data => this.disableRandomImage$.next(data['disableRandomImage'] as boolean))
         })
     }
-
     ngOnInit(): void {
-        if (this.projects === undefined) {
-            this.getProjects()
-        }
+        this.getProjects()
         this.titleService.setTitle('大料建筑 / DL Atelier')
     }
 
@@ -78,33 +75,32 @@ export class ProjectsComponent implements OnInit, OnDestroy, AfterContentChecked
     }
 
     ngAfterViewInit(): void {
-        const autoPlayable$ = new ReplaySubject<boolean>(1)
-        autoPlayable$
+        this.autoPlayable$
             .pipe(
-                startWith(true),
+                startWith(false),
                 switchMap(playable =>
                     playable
                         ? this.disableRandomImage$.pipe(
-                              startWith(true),
+                              startWith(false),
                               switchMap(disable => (disable ? timer(0) : timer(0, 2000))),
                           )
                         : EMPTY,
                 ),
                 tap(() => this.attachRandomImagePortal()),
+                takeUntil(this.unsubscribe$),
             )
             .subscribe()
-        if (this.tilePortalContents.length > 0) autoPlayable$.next(true)
-
-        this.tilePortalContents.changes.subscribe(_ => autoPlayable$.next(true))
     }
 
     ngOnDestroy(): void {
         this._unsubGetProjects()
+        this.unsubscribe$.next()
     }
 
     getProjects(): void {
         const sub = this.projectService.getProjects().subscribe(projects => {
             this.projects = projects
+            this.autoPlayable$.next(true)
         })
         this._unsubGetProjects = sub.unsubscribe
     }

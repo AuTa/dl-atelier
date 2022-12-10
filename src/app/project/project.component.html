@@ -2,7 +2,8 @@
     <img
         *ngIf="project && mainImagePath"
         [ngSrc]="mainImagePath"
-        (load)="loading$.next(false)"
+        (load)="loadImageEvent($event)"
+        (error)="loadImageEvent($event)"
         alt="{{ project.imagePathPrefix }}"
         class="object-cover h-full w-auto"
         fill
