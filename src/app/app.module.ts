@@ -26,7 +26,7 @@ import { ProjectPositionComponent } from './project-position/project-position.co
 import { ProjectTileComponent } from './project-tile/project-tile.component'
 import { ProjectComponent } from './project/project.component'
 import { ProjectsComponent } from './projects/projects.component'
-import { ProjectSliderComponent } from './slider/slider.component';
+import { ProjectSliderComponent } from './slider/slider.component'
 import { ImageLoadingComponent } from './image-loading/image-loading.component'
 
 @NgModule({
@@ -68,7 +68,8 @@ import { ImageLoadingComponent } from './image-loading/image-loading.component'
             provide: IMAGE_LOADER,
             useValue: (config: ImageLoaderConfig) => {
                 const cdnUrl = (environment.cdn as boolean) ? environment.cdnUrl : ''
-                return `${cdnUrl}/${encodeURI(config.src)}?imageView2/2/w/${config.width}`
+                const parameters = config.width ? `?imageView2/2/w/${config.width}` : ''
+                return `${cdnUrl}/${encodeURI(config.src)}${parameters}`
             },
         },
     ],
