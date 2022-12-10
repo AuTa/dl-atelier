@@ -61,7 +61,7 @@ export class ProjectPositionComponent {
         const overlayRef = this.overlayRefFactory(elementRef)
         overlayRef.attach(
             new TemplatePortal(this.overlayTemplate, this.viewContainerRef, {
-                url: project.mainImagePath('images'),
+                url: project.mainImagePath,
                 name: project.name,
             }),
         )

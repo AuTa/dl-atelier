@@ -71,8 +71,8 @@ export class ProjectComponent implements OnInit, AfterViewInit {
 
             this.titleService.setTitle(`大料建筑 - ${this.project.getLangField(Lang.cn, 'Title')}`)
 
-            this.imagePathes = this.project.imagePaths(this.imageBasePath)
-            this.mainImagePath = this.project.mainImagePath(this.imageBasePath)
+            this.imagePathes = this.project.imagePaths
+            this.mainImagePath = this.project.mainImagePath
         })
     }
 
@@ -86,7 +86,6 @@ export class ProjectComponent implements OnInit, AfterViewInit {
                 .subscribe()
         })
     }
-    imageBasePath = 'images'
 
     onClick(event: Event, valid: boolean): void {
         event.stopPropagation()

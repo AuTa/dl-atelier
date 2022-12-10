@@ -1,5 +1,5 @@
 import { animate, style, transition, trigger } from '@angular/animations'
-import { Component, Input } from '@angular/core'
+import { Component, Input, OnInit } from '@angular/core'
 import { BehaviorSubject, delay, mergeMap, of } from 'rxjs'
 
 import { Project } from '../project'
@@ -9,9 +9,15 @@ import { Project } from '../project'
     templateUrl: './project-tile.component.html',
     styleUrls: ['./project-tile.component.scss'],
 })
-export class ProjectTileComponent {
+export class ProjectTileComponent implements OnInit {
     @Input() project!: Project
     @Input() forbiddenLoading: boolean = false
 
+    mainImagePath?: string
+
     loading$ = new BehaviorSubject(true)
+
+    ngOnInit(): void {
+        this.mainImagePath = this.project.mainImagePath
+    }
 }

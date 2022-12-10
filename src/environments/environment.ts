@@ -4,7 +4,8 @@
 
 export const environment = {
     production: false,
-    cdn: true,
+    imageFolder: 'images',
+    cdn: false,
     cdnUrl: 'http://www.dl-atelier.com',
 }
 
