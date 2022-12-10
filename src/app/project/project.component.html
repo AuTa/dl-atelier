@@ -1,6 +1,6 @@
-<div class="h-full w-full relative" (click)="onClick($event, true)" [class.z-10]="showDetails">
+<div class="h-full w-full relative bg-black" (click)="onClick($event, true)" [class.z-10]="showDetails">
     <img
-        *ngIf="project"
+        *ngIf="project && mainImagePath"
         [ngSrc]="mainImagePath"
         (load)="loading$.next(false)"
         alt="{{ project.imagePathPrefix }}"
@@ -14,7 +14,7 @@
         <div class="prose max-w-none sm:max-h-screen flex justify-center items-center w-4/5">
             <app-project-description
                 [project]="project"
-                class="sm:max-h-screen text-red-500 w-full"
+                class="sm:max-h-screen w-full"
                 (click)="onClick($event, false)"></app-project-description>
         </div>
         <div class="w-4/5">
@@ -25,5 +25,5 @@
                 class="block"></app-project-gallery>
         </div>
     </div>
-    <app-image-loading [loading$]="loading$" [delay]="0"></app-image-loading>
+    <app-image-loading *ngIf="mainImagePath" [loading$]="loading$" [delay]="0"></app-image-loading>
 </div>

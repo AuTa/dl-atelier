@@ -851,6 +851,19 @@
             "mainImageIndex": 1,
             "beginImageIndex": 2,
             "endImageIndex": 9
+        },
+        {
+            "name": "about",
+            "cnTitle": "关于我们",
+            "enTitle": "About",
+            "cnFactsFigures": [],
+            "enFactsFigures": [],
+            "cnDescription": "2012年秋，大料建筑由劉陽和徐丹在北京成立。<br> 如今，我們最關心的是情感和記憶。我們希望用率性的方式做出“煽情”的設計。<br> 我們理想中的建筑是：午后，大樹下，人们三三两两，聊天嬉笑，享受陽光和恬静。<br> 我們的作品多次參加建築及藝術展覽，并已獲得六項國際設計獎。<br><br> 地址：中国 北京 东城区 国子监街 36号<br> 电话：0810-84083292<br>手机：13810159637<br> 邮箱：L@dl-atelier.com",
+            "enDescription": "DL atelier Set up at the end of 2012,the principal is Liuyang and Xudan.<br> Great design is all about feelings and memories. We design with passion.<br> People relaxing under the shadow of trees with bucket loads of sunshine are the ideal scenery which inspire most creativity on our work.<br><br> Add: #36, Guozijian Jie, Dongcheng District, Beijing, China, 100007<br> Tel： 0810-84083292<br> Mobile: 13810159637<br> E-mail: L@dl-atelier.com",
+            "imagePathPrefix": "",
+            "images": [
+                "dl-map.jpg"
+            ]
         }
     ]
 }

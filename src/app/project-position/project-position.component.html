@@ -9,7 +9,7 @@
         class="pointer-events-auto"
         (mouseenter)="onMouseEnter($event, i)"></mat-radio-button>
     <ng-template let-url="url" let-name="name" #overlay>
-        <mat-card @overlayTrigger class="w-full backdrop-blur-sm !bg-white !bg-opacity-10">
+        <mat-card @overlayTrigger class="w-full backdrop-blur-sm !bg-white !bg-opacity-10" *ngIf="url">
             <img
                 mat-card-image
                 [ngSrc]="url"
