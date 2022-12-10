@@ -67,9 +67,10 @@ import { ImageLoadingComponent } from './image-loading/image-loading.component'
         {
             provide: IMAGE_LOADER,
             useValue: (config: ImageLoaderConfig) => {
-                const cdnUrl = (environment.cdn as boolean) ? environment.cdnUrl : ''
+                if (!environment.cdn) return encodeURI(config.src)
+                const cdnUrl = `${environment.cdnUrl}\\`
                 const parameters = config.width ? `?imageView2/2/w/${config.width}` : ''
-                return `${cdnUrl}/${encodeURI(config.src)}${parameters}`
+                return `${cdnUrl}${encodeURI(config.src)}${parameters}`
             },
         },
     ],
