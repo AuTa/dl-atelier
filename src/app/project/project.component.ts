@@ -73,6 +73,7 @@ export class ProjectComponent implements OnInit, AfterViewInit {
 
             this.imagePathes = this.project.imagePaths
             this.mainImagePath = this.project.mainImagePath
+            if (this.project.defaultDetails) this.showDetails = true
         })
     }
 

@@ -863,7 +863,8 @@
             "imagePathPrefix": "",
             "images": [
                 "dl-map.jpg"
-            ]
+            ],
+            "defaultDetails": true
         }
     ]
 }
