@@ -21,7 +21,9 @@
         (mouseleave)="apps_color.color = undefined">
         <mat-icon>apps</mat-icon>
     </button>
-    <app-project-position [projects]="projects" class="self-end place-self-center pb-1"></app-project-position>
+    <app-project-position
+        [projects]="projects"
+        class="self-end place-self-center pb-1 hidden sm:block"></app-project-position>
     <button
         mat-icon-button
         aria-label="Forward"
