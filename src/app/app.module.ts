@@ -27,7 +27,8 @@ import { ProjectTileComponent } from './project-tile/project-tile.component'
 import { ProjectComponent } from './project/project.component'
 import { ProjectsComponent } from './projects/projects.component'
 import { ProjectSliderComponent } from './slider/slider.component'
-import { ImageLoadingComponent } from './image-loading/image-loading.component'
+import { ImageLoadingComponent } from './image-loading/image-loading.component';
+import { MusicComponent } from './music/music.component'
 
 @NgModule({
     declarations: [
@@ -43,6 +44,7 @@ import { ImageLoadingComponent } from './image-loading/image-loading.component'
         BusinessCardComponent,
         ProjectTileComponent,
         ImageLoadingComponent,
+        MusicComponent,
     ],
     imports: [
         BrowserModule,

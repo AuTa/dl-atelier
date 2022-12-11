@@ -1,0 +1,8 @@
+<audio #audio autoplay loop>
+    <source src="musics/The Sun Also Rises.ogg" type="audio/ogg; codecs=vorbis" />
+    <source src="musics/The Sun Also Rises.mp3" type="audio/mpeg" />
+</audio>
+<button #play mat-icon-button aria-label="Play" class="!absolute inset-0 !z-50" (click)="onClick()">
+    <mat-icon *ngIf="isPlay" class="align-top" [class.text-gray-400]="!play.color">pause_circle_outline</mat-icon>
+    <mat-icon *ngIf="!isPlay" class="align-top" [class.text-gray-400]="!play.color">play_circle_filled</mat-icon>
+</button>

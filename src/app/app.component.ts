@@ -1,8 +1,4 @@
-import { animateChild, group, query, transition, trigger } from '@angular/animations'
-import { Component, OnInit } from '@angular/core'
-import { ChildrenOutletContexts } from '@angular/router'
-import { Project } from './project'
-import { ProjectService } from './project.service'
+import { Component } from '@angular/core'
 
 @Component({
     selector: 'app-root',
