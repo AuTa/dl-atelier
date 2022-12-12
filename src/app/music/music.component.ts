@@ -10,12 +10,14 @@ import { from, tap, catchError, of } from 'rxjs'
 export class MusicComponent implements AfterViewInit {
     isPlay = false
 
-    @ViewChild('audio') audio!: ElementRef<HTMLAudioElement>
+    @ViewChild('audio') private _audio!: ElementRef<HTMLAudioElement>
     @ViewChild('play') playButton!: MatIconButton
 
+    audio!: HTMLAudioElement
+
     ngAfterViewInit(): void {
-        const audio = this.audio.nativeElement
-        from(audio.play())
+        this.audio = this._audio.nativeElement
+        from(this.audio.play())
             .pipe(
                 tap(() => {
                     this.isPlay = true
@@ -32,7 +34,7 @@ export class MusicComponent implements AfterViewInit {
     onClick(): void {
         this.isPlay = !this.isPlay
         this.isPlay
-            ? from(this.audio.nativeElement.play()).subscribe(() => (this.playButton.color = undefined))
-            : this.audio.nativeElement.pause()
+            ? from(this._audio.nativeElement.play()).subscribe(() => (this.playButton.color = undefined))
+            : this._audio.nativeElement.pause()
     }
 }
