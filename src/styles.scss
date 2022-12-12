@@ -1,4 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
+@use '@angular/material' as mat;
+
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
@@ -57,4 +59,14 @@ body {
 }
 .mat-mdc-radio-button .mdc-radio {
     --mdc-radio-state-layer-size: 24px;
+}
+
+@layer utilities {
+    @for $zValue from 0 to 24 {
+        .elevation-z#{$zValue} {
+            @include mat.elevation-transition();
+            @include mat.elevation($zValue);
+            z-index: 1;
+        }
+    }
 }

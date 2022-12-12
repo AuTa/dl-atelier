@@ -1,6 +1,6 @@
 <div
     [routerLink]="['/projects', project.name]"
-    class="group flex-auto relative w-full h-full aspect-sqrt-2 overflow-hidden">
+    class="group flex-auto relative w-full h-full aspect-sqrt-2 overflow-hidden hover:elevation-z8">
     <img
         *ngIf="mainImagePath"
         (load)="loading$.next(false)"
