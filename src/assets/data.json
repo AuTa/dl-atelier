@@ -864,7 +864,7 @@
             "images": [
                 "dl-map.jpg"
             ],
-            "defaultDetails": true
+            "defaultShowDetails": true
         }
     ]
 }

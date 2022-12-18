@@ -27,7 +27,7 @@ export class Project {
     endImageIndex!: number
     mainImage?: string // 主图链接，如果存在则不考虑索引。
     images?: string[] // 图片链接，如果存在则不考虑索引。
-    defaultDetails?: boolean
+    defaultShowDetails?: boolean
 
     getLangField(lang: LangStrings, field: FieldStrings): NgIterable<string> {
         const fieldMap: Record<FieldStrings, Record<LangStrings, () => string | string[]>> = {

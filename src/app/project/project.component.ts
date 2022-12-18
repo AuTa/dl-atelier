@@ -73,7 +73,7 @@ export class ProjectComponent implements OnInit, AfterViewInit {
 
             this.imagePathes = this.project.imagePaths
             this.mainImagePath = this.project.mainImagePath
-            if (this.project.defaultDetails) this.showDetails = true
+            if (this.project.defaultShowDetails) this.showDetails = true
             /** 如果有图片，等待图片加载完再自动播放。 */
             if (this.mainImagePath) this.sliderAutoplay.autoplayable$.next(false)
         })
