@@ -1,0 +1,11 @@
+/*
+**
+Angular CLI is modifying the paths to fonts set in @font-face to point to the root directory in a production build
+** https://github.com/angular/angular-cli/issues/6599#issuecomment-554356108
+** https://github.com/angular/angular-cli/issues/6599#issuecomment-564980388
+*/
+@font-face {
+    font-family: '大料建筑';
+    src: url('~/fonts/方正宋刻本秀楷简体.大料建筑.woff2') format(woff2),
+        url('~/fonts/方正宋刻本秀楷简体.大料建筑.TTF') format(truetype);
+}

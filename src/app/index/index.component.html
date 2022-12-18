@@ -2,6 +2,6 @@
     matRipple
     routerLink="/projects"
     class="mask h-screen w-screen absolute top-0 left-0 backdrop-blur-md grid grid-rows-2 justify-center">
-    <img #img src="DLName.png" alt="大料建筑" class="self-end" (load)="this.imageLoader = false" />
-    <app-business-card [hidden]="!img.complete" [hiddenTelephone]="true" [hiddenAddress]="true"></app-business-card>
+    <span class="text-4xl self-end text-white">大料建筑</span>
+    <app-business-card [hiddenTelephone]="true" [hiddenAddress]="true"></app-business-card>
 </div>
