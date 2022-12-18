@@ -11,7 +11,8 @@
         alt="{{ project.imagePathPrefix }}"
         class="w-full scale-[1.01] group-hover:scale-105 transition-transform ease-out duration-[1500ms]" />
     <div
-        class="peer absolute inset-0 text-white h-full w-full px-8 pb-4 flex flex-col justify-end invisible group-hover:visible">
+        class="peer absolute inset-0 text-white h-full w-full px-8 pb-4 flex flex-col justify-end group-hover:visible"
+        [class.invisible]="!project.defaultShowDetails">
         <span class="font-normal">{{ project.getLangField('en', 'Title') }}</span>
         <span class="font-normal">{{ project.getLangField('cn', 'Title') }}</span>
     </div>
