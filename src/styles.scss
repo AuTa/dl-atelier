@@ -47,8 +47,9 @@ body {
 }
 body {
     margin: 0;
-    font-family: Roboto, 'Helvetica Neue', -apple-system, BlinkMacSystemFont, 'Microsoft JhengHei', '微软雅黑',
-        sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Hiragino Sans GB', 'Noto Sans CJK SC',
+        'Source Han Sans SC', 'Source Han Sans CN', 'Noto Sans', 'Helvetica Neue', Helvetica, 'Microsoft YaHei',
+        '微软雅黑', sans-serif;
 }
 
 .mat-mdc-radio-button {
@@ -69,4 +70,8 @@ body {
             z-index: 1;
         }
     }
+}
+
+.text-red {
+    @apply text-red-500;
 }
