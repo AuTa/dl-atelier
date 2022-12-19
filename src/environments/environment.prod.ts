@@ -2,5 +2,5 @@ export const environment = {
     production: true,
     imageFolder: 'images',
     cdn: true,
-    cdnUrl: 'http://www.dl-atelier.com',
+    cdnUrl: 'https://dl-atelier.oss-cn-beijing.aliyuncs.com',
 }

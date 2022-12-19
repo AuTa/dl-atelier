@@ -27,7 +27,7 @@ import { ProjectTileComponent } from './project-tile/project-tile.component'
 import { ProjectComponent } from './project/project.component'
 import { ProjectsComponent } from './projects/projects.component'
 import { ProjectSliderComponent } from './slider/slider.component'
-import { ImageLoadingComponent } from './image-loading/image-loading.component';
+import { ImageLoadingComponent } from './image-loading/image-loading.component'
 import { MusicComponent } from './music/music.component'
 
 @NgModule({
@@ -71,7 +71,7 @@ import { MusicComponent } from './music/music.component'
             useValue: (config: ImageLoaderConfig) => {
                 if (!environment.cdn) return encodeURI(config.src)
                 const cdnUrl = `${environment.cdnUrl}\\`
-                const parameters = config.width ? `?imageView2/2/w/${config.width}` : ''
+                const parameters = config.width ? `?x-oss-process=image/resize,w_${config.width}` : ''
                 return `${cdnUrl}${encodeURI(config.src)}${parameters}`
             },
         },
